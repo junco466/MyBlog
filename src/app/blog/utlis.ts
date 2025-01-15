@@ -4,7 +4,7 @@ import matter from "gray-matter";
 
 //get all the mdx files from the dir
 function getMDXFiles(dir:string){
-    return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx")
+    return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
 }
 
 //Read data from those files
@@ -20,7 +20,7 @@ function getMDXData(dir:string){
         let { data: metadata, content } = readMDXFile(path.join(dir,file));
         let slug = path.basename(file, path.extname(file));
 
-        return{
+        return {
             metadata,
             slug,
             content,
@@ -32,7 +32,7 @@ export function getBlogPosts(){
     return getMDXData(path.join(process.cwd(),"src","app","blog","contents"));
 }
 
-export function formatDate(date: string, includeRelative = false){
+export function formatDate(date: string, includeRelative = true){
     let currentDate = new Date();
     if(date.includes('T')){
         date = `${date}T00:00:00`;
