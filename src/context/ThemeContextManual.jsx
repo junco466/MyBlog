@@ -1,5 +1,4 @@
 "use client";
-
 import { createContext, useEffect, useState } from "react";
 
 export const ThemeContextManual = createContext();
@@ -25,8 +24,8 @@ export const ThemeContextProviderManual = ({ children }) => {
   }, [theme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, toggle }}>
+    <ThemeContextManual.Provider value={{ theme, toggle }}>
       {children}
-    </ThemeContext.Provider>
+    </ThemeContextManual.Provider>
   );
 };

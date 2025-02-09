@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/navBar";
 import Footer from "@/components/footer";
 import { ThemeProviderShadcn } from "@/providers/theme-provider-shadcn";
+import { ThemeContextProviderManual } from "@/context/ThemeContextManual";
+import ThemeProviderManual from '../providers/theme-provider-manual'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,12 +33,14 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <ThemeProviderShadcn
+          {/* <ThemeProviderShadcn
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
-          >
+          > */}
+          <ThemeContextProviderManual>
+            <ThemeProviderManual>
             <div className="main-container">
               <div className="wrapper">
                 <Navbar />
@@ -44,7 +48,9 @@ export default function RootLayout({
                 <Footer />
               </div>
             </div>
-          </ThemeProviderShadcn>
+            </ThemeProviderManual>
+          </ThemeContextProviderManual>
+          {/* </ThemeProviderShadcn> */}
         </body>
       </html>
     </>

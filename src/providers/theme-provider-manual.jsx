@@ -2,8 +2,9 @@
 import { useContext, useEffect, useState } from "react";
 import { ThemeContextManual } from "@/context/ThemeContextManual";
 import React from "react";
+import { useTheme } from "next-themes";
 
-export default ThemeProvideManual = ({ children }) => {
+const ThemeProvideManual = ({ children }) => {
   const { theme } = useContext(ThemeContextManual);
   const [mounted, setMounted] = useState(false);
 
@@ -12,6 +13,13 @@ export default ThemeProvideManual = ({ children }) => {
   }, []);
 
   if (mounted) {
-    return <div className={theme}>{children}</div>;
+    return (
+      <div className={theme}>
+        {children}
+      </div>
+    )
+    
   }
 };
+
+export default ThemeProvideManual
