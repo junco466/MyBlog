@@ -30,6 +30,13 @@ a{
   text-decoration: none;
 }
 
+/* .dark {
+  --bg: #0f172a;
+  --textColor: #ddd;
+  --softBg: #1f273a;
+  --softTextColor: #a6a6a6;
+} */
+
 .main-container{
   min-height: 100vh;
   /* background-color: var(--bg); */
@@ -45,6 +52,10 @@ a{
   padding-right: 80px;
 }
 
+h1{
+  font-weight: bold;
+  font-size: 25px;
+}
 @media screen and (max-width:1536px) {
   .wrapper{
     max-width: 1366px;
@@ -115,8 +126,10 @@ a{
     --radius: 0.5rem;
   }
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
+    /* --background: 80 50% 60%;
+    --foreground: 0 0% 98%; */
+    --background: 222 64% 11%; 
+    --foreground: 0 0% 87%
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 3.9%;

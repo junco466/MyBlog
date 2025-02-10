@@ -4,7 +4,7 @@ import { formatDate, getBlogPosts } from "@/app/blog/utlis";
 import Link from "next/link";
 
 const LatestPosts = () => {
-  let latestPosts = getBlogPosts();
+  const latestPosts = getBlogPosts();
   //console.log(latestPosts);
   return (
     <div className={styles.container}>
