@@ -56,6 +56,12 @@ h1{
   font-weight: bold;
   font-size: 25px;
 }
+
+h2{
+  font-weight: bold;
+  font-size: 20px;
+}
+
 @media screen and (max-width:1536px) {
   .wrapper{
     max-width: 1366px;
