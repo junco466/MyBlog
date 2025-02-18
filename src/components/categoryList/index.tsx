@@ -31,13 +31,15 @@ const CategoryList = async () => {
             key={item.id}
           >
             {item.img && (
+              <div className={styles.imageContainer}>  
               <Image
                 src={item.img}
                 alt=""
-                width={32}
-                height={32}
+                fill
+                sizes="auto"
                 className={styles.image}
-              />
+                />
+                </div>
             )}
 
             {item.title}

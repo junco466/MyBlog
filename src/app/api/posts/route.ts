@@ -12,11 +12,23 @@ export const GET = async (req:Request) => {
   const POST_PER_PAGE = 2;
 
   try {
-    const posts:Post[] = await prisma.post.findMany({
+
+    //Single request, solo para realizar una solo request
+    // const posts:Post[] = await prisma.post.findMany({
+    //   take:POST_PER_PAGE,
+    //   skip: POST_PER_PAGE * (page-1)
+    // });
+
+    const query = {
       take:POST_PER_PAGE,
       skip: POST_PER_PAGE * (page-1)
-    });
-    return NextResponse.json(posts, { status: 200 });
+    }
+    //Multiple requests, puedo realizar varias consultas a la vez
+    const [posts, count]:[Post[],number] = await prisma.$transaction([
+      prisma.post.findMany(query),
+      prisma.post.count(),
+    ])
+    return NextResponse.json({posts,count}, { status: 200 });
   } catch (err) {
     console.log(err);
     return NextResponse.json(

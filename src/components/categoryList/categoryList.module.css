@@ -48,8 +48,15 @@
     background-color: #5e4fff31;
 }
 
+.imageContainer {
+    position: relative;
+    width: 32;
+    height: 32;
+}
+
 .image{
     border-radius: 50%;
+    object-fit: cover;
 }
 
 @media screen and (max-width:1280px){
