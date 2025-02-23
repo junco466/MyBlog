@@ -5,14 +5,23 @@ import Card from "../card";
 // import { Post } from "@/types";
 import { Post } from "@prisma/client";
 
+
 interface CardListProps {
   page: number; // Tipado explícito para 'page'
+  cat?: string | string[];
 }
 
-const getData = async (page:number): Promise<{posts: Post[]; count: number}> => {
-  const res = await fetch(`http://localhost:3000/api/posts?page=${page}`, {
-    cache: "no-store",
-  });
+
+const getData = async (
+  page: number,
+  cat: string | string[]
+): Promise<{ posts: Post[]; count: number }> => {
+  const res = await fetch(
+    `http://localhost:3000/api/posts?page=${page}&cat=${cat || ""}`,
+    {
+      cache: "no-store",
+    }
+  );
 
   if (!res.ok) {
     throw new Error("Fetch Categories Failed");
@@ -21,23 +30,24 @@ const getData = async (page:number): Promise<{posts: Post[]; count: number}> => 
   return res.json();
 };
 
-const CardList:React.FC<CardListProps> = async ({ page }) => {
-  const {posts,count} = await getData(page)
 
-  const POST_PER_PAGE =2;
+const CardList: React.FC<CardListProps> = async ({ page, cat }) => {
+  const { posts, count } = await getData(page, cat||"");
 
-  const hasPrev = POST_PER_PAGE * (page-1) > 0
-  const hasNext = POST_PER_PAGE * (page-1) + POST_PER_PAGE < count
+  const POST_PER_PAGE = 2;
+
+  const hasPrev = POST_PER_PAGE * (page - 1) > 0;
+  const hasNext = POST_PER_PAGE * (page - 1) + POST_PER_PAGE < count;
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Recent Posts</h1>
       <div className={styles.posts}>
-        {posts?.map((item:Post) => (
-          <Card item={item} propKey={item.id} key={item.id}/>
+        {posts?.map((item: Post) => (
+          <Card item={item} propKey={item.id} key={item.id} />
         ))}
       </div>
-      <Pagination page={page} hasPrev={hasPrev} hasNext={hasNext}/>
+      <Pagination page={page} hasPrev={hasPrev} hasNext={hasNext} />
     </div>
   );
 };
